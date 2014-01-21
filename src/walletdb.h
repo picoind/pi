@@ -5,6 +5,7 @@
 #ifndef BITCOIN_WALLETDB_H
 #define BITCOIN_WALLETDB_H
 
+#include <sys/types.h>
 #include "db.h"
 #include "base58.h"
 

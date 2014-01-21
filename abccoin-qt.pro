@@ -114,6 +114,7 @@ QMAKE_EXTRA_TARGETS += genleveldb
 # Gross ugly hack that depends on qmake internals, unfortunately there is no other way to do it.
 QMAKE_CLEAN += $$PWD/src/leveldb/libleveldb.a; cd $$PWD/src/leveldb ; $(MAKE) clean
 
+
 # regenerate src/build.h
 !win32|contains(USE_BUILD_INFO, 1) {
     genbuild.depends = FORCE
@@ -356,8 +357,13 @@ isEmpty(BOOST_THREAD_LIB_SUFFIX) {
     BOOST_THREAD_LIB_SUFFIX = $$BOOST_LIB_SUFFIX
 }
 
+# Paths are different depending on if macports or homebrew is used to build dependencies
+
 isEmpty(BDB_LIB_PATH) {
-    macx:BDB_LIB_PATH = /opt/local/lib/db48
+#macports
+    #macx:BDB_LIB_PATH = /opt/local/lib/db48
+#homebrew
+    macx:BDB_LIB_PATH = /usr/local/Cellar/berkeley-db4/4.8.30/lib/
 }
 
 isEmpty(BDB_LIB_SUFFIX) {
@@ -365,15 +371,34 @@ isEmpty(BDB_LIB_SUFFIX) {
 }
 
 isEmpty(BDB_INCLUDE_PATH) {
-    macx:BDB_INCLUDE_PATH = /opt/local/include/db48
+#macports
+    #macx:BDB_INCLUDE_PATH = /opt/local/include/db48
+#homebrew
+    macx:BDB_INCLUDE_PATH = /usr/local/Cellar/berkeley-db4/4.8.30/include/
 }
 
 isEmpty(BOOST_LIB_PATH) {
-    macx:BOOST_LIB_PATH = /opt/local/lib
+#macports
+    #macx:BOOST_LIB_PATH = /opt/local/lib
+#homebrew
+    macx:BOOST_LIB_PATH = /usr/local/Cellar/boost/1.55.0/lib/
 }
 
 isEmpty(BOOST_INCLUDE_PATH) {
-    macx:BOOST_INCLUDE_PATH = /opt/local/include
+#macports
+    #macx:BOOST_INCLUDE_PATH = /opt/local/include
+#homebrew
+    macx:BOOST_INCLUDE_PATH = /usr/local/Cellar/boost/1.55.0/include/
+}
+
+isEmpty(OPENSSL_INCLUDE_PATH) {
+# homebrew
+    macx:OPENSSL_INCLUDE_PATH = /usr/local/Cellar/openssl/1.0.1e/include/
+}
+
+isEmpty(OPENSSL_LIB_PATH) {
+#homebrew
+    macx:OPENSSL_LIB_PATH = /usr/local/Cellar/openssl/1.0.1e/lib/
 }
 
 win32:DEFINES += WIN32
