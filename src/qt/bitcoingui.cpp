@@ -187,7 +187,7 @@ void BitcoinGUI::createActions(bool fIsTestnet)
     tabGroup->addAction(overviewAction);
 
     sendCoinsAction = new QAction(QIcon(":/icons/send"), tr("&Send PI"), this);
-    sendCoinsAction->setStatusTip(tr("Transfer FFC to another Wallet"));
+    sendCoinsAction->setStatusTip(tr("Transfer PI to another Wallet"));
     sendCoinsAction->setToolTip(sendCoinsAction->statusTip());
     sendCoinsAction->setCheckable(true);
     sendCoinsAction->setShortcut(QKeySequence(Qt::ALT + Qt::Key_2));
